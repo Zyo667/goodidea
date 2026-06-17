@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艺术展 — Art Exhibition</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">HBY</span>
+                <span class="logo-sub">ART EXHIBITION</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">首页</a></li>
+                <li><a href="#showcase">精选</a></li>
+                <li><a href="#draw">拾遗</a></li>
+                <li><a href="#gallery">展厅</a></li>
+                <li><a href="#guestbook">留言</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">
+                <span></span><span></span><span></span>
+            </button>
+            <button class="nav-darkmode" id="darkModeBtn" aria-label="关灯模式" title="关灯模式">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-content">
+            <p class="hero-tag">2026 SPECIAL EXHIBITION</p>
+            <h1 class="hero-title">
+                <span class="title-cn">艺术展</span>
+                <span class="title-en">HBY ART EXHIBITION</span>
+            </h1>
+            <p class="hero-desc">走过一场真正艺术的奇幻之旅</p>
+            <div class="hero-line"></div>
+            <a href="#gallery" class="hero-enter">
+                <span>ENTER GALLERY</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+        </div>
+        <div class="hero-scroll"><div class="scroll-line"></div></div>
+    </section>
+
+    <!-- 3D Ring Carousel -->
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">SPOTLIGHT</p>
+                <h2 class="section-title">精选展示</h2>
+                <p class="section-line"></p>
+            </div>
+        </div>
+        <div class="ring-scene">
+            <div class="ring-hint">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 5v14M5 12h14"/></svg>
+                <span>滚轮旋转轨道</span>
+            </div>
+            <div class="ring-container" id="ringContainer">
+                <!-- items built by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Draw System -->
+    <section class="draw" id="draw">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">DISCOVER</p>
+                <h2 class="section-title">幻艺拾遗</h2>
+                <p class="section-line"></p>
+            </div>
+            <div class="draw-pool">
+                <div class="draw-vortex" id="drawVortex">
+                    <div class="vortex-ring"></div>
+                    <div class="vortex-ring"></div>
+                    <div class="vortex-ring"></div>
+                    <div class="vortex-core">
+                        <span class="vortex-icon">✦</span>
+                    </div>
+                </div>
+                <button class="draw-btn" id="drawBtn">
+                    <span>触碰抽取</span>
+                    <span class="draw-count" id="drawCount">--</span>
+                </button>
+            </div>
+            <p class="draw-hint">展厅中尚有许多被迷雾笼罩的作品，触碰将其唤醒</p>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">GALLERY</p>
+                <h2 class="section-title">作品展厅</h2>
+                <p class="section-line"></p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- images folder - loaded dynamically by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lb-close" id="lbClose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <button class="lb-nav lb-prev" id="lbPrev">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="lb-nav lb-next" id="lbNext">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="lb-body">
+            <img src="" alt="" id="lbImg">
+        </div>
+    </div>
+
+    <!-- Draw Result Modal -->
+    <div class="draw-modal" id="drawModal">
+        <div class="dm-backdrop" id="dmBackdrop"></div>
+        <div class="dm-card">
+            <button class="dm-close" id="dmClose">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="dm-label">✦ 幻艺拾遗 ✦</div>
+            <div class="dm-image"><img src="" alt="" id="dmImg"></div>
+            <p class="dm-hint">点击画面任意处关闭</p>
+        </div>
+    </div>
+
+    <!-- Guestbook -->
+    <section class="guestbook" id="guestbook">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">GUESTBOOK</p>
+                <h2 class="section-title">观展留言</h2>
+                <p class="section-line"></p>
+            </div>
+            <div class="gb-form">
+                <input type="text" class="gb-input" id="gbName" placeholder="你的名字" maxlength="20">
+                <textarea class="gb-textarea" id="gbMsg" placeholder="写下你的感受..." maxlength="300" rows="3"></textarea>
+                <button class="gb-submit" id="gbSubmit">留下足迹</button>
+            </div>
+            <div class="gb-list" id="gbList"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="footer-logo">HBY</span>
+                    <span class="footer-sub">ART EXHIBITION 2026</span>
+                </div>
+                <p class="footer-copy">All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dark mode overlay -->
+    <div class="dark-overlay" id="darkOverlay"></div>
+
+    <script src="manifest.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
